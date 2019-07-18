@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainPage from './components/MainPage'
+import ButtonBackOnMainPage from './components/ButtonBackOnMainPage'
 
 import './App.css';
 import ViewPage from './components/ViewPage';
@@ -15,6 +16,7 @@ class App extends React.Component {
       employeesArray: []
     }
     this.renderMainPage = this.renderMainPage.bind(this)
+    this.onCreateEmployee = this.onCreateEmployee.bind(this)
     this.onCreateComment = this.onCreateComment.bind(this)
   }
 
@@ -39,15 +41,42 @@ class App extends React.Component {
     )
   }
 
-  renderViewPage({ match }) {    
+  renderViewPage({ match }) {
     const employee = this.state.employeesArray.find((elem) => elem.id === match.params.id)
     if (employee) {
-      return (<ViewPage employee={employee} onCreateComment={this.onCreateComment} employeesForCarousel={this.state.employeesArray} />)
+      return (<ViewPage
+        employee={employee}
+        onCreateEmployee={this.onCreateEmployee}
+        onCreateComment={this.onCreateComment}
+        employeesForCarousel={this.state.employeesArray}
+      />
+      )
     }
-    return "Ошибка при генерации страницы сотрудника"
+    return (
+      <div>
+        <h1>
+          Загрузка страницы
+        </h1>
+        <ButtonBackOnMainPage />
+      </div>
+    )
   }
 
-  onCreateComment(employee, comment) {
+  onCreateEmployee(employee) {
+    employee.id = this.state.employeesArray.length + 2 + ""
+    const getImgSrcForEmployee = () => {
+      return Math.floor(Math.random() * (71 - 1) + 1)
+    }
+    employee.imgSrc = "?img=" + getImgSrcForEmployee()
+    employee.comments = []
+    const changedState = this.state
+    changedState.employeesArray.push(employee)
+    this.setState(changedState)
+  }
+
+  async onCreateComment(employee, comment) {
+    const commentBody = Object.assign(comment, {employee_id: employee.id})
+    await request({url:"http://2m6rw.mocklab.io/comments", method: "POST", json: commentBody }) 
     const changedState = this.state
     employee.comments.push(comment)
     changedState.employeesArray = changedState.employeesArray.map((elem) => {

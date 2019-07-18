@@ -21,10 +21,12 @@ export default function ({ name, label, required, minNumberOfCharacters, maxNumb
             {({ input, meta }) => (
                 <div>
                     <label>{label}</label>
-                    <input {...input} />
-                    {meta.error && meta.touched && (<p>{meta.error}</p>)}
+                    <div>
+                        <input {...input} />
+                        {meta.error && meta.touched && (<p>{meta.error}</p>)}
+                    </div>
                 </div>
             )}
-        </Field>  
+        </Field>
     )
 }

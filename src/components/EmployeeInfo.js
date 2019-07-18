@@ -8,13 +8,13 @@ export default function ({ employee }) {
                 <img src={`https://i.pravatar.cc/300/${employee.imgSrc}`} alt="Аватар" />
             </div>
             <div className="employeeInfo__text">
-                <h1>
+                <h1 className="employeeInfo__name-surname">
                     {employee.name} {employee.surname}
                 </h1>
-                <h2>
+                <h2 className="employeeInfo__position">
                     {employee.position}
                 </h2>
-                <p>
+                <p className="employeeInfo__email">
                     Email: {employee.email}
                 </p>
             </div>

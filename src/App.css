@@ -1,5 +1,5 @@
 .wrapper {
-  width: 40%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -9,6 +9,7 @@
 
 .listOfEmployees li {
   display: flex;
+  flex-wrap: wrap;
   padding: 10px 0;
   font-size: 25px;
 }
@@ -26,15 +27,67 @@
   margin: 0 auto;
 }
 
-.employeeInfo {
-  display: flex;
-  flex-wrap: wrap;
+.carouselEmployees {
+  padding: 20px 0;
 }
 
 .carousel-slider {
   margin: 0 auto !important;
+  width: 100% !important;
 }
 
 .slide>a {
   display: inline-block;
+}
+
+.formAddEmployee, .formAddComment {
+  padding: 20px 0;
+}
+
+.formAddEmployee>form, .formAddComment>form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formAddEmployee>form div, .formAddComment>form div  {
+  flex: 1 1 400px;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.formAddEmployee>form div>label, .formAddComment>form div>label  {
+  flex: 1 0 200px;
+  padding: 0 0 5px 0;
+}
+
+.formAddEmployee>form div input, .formAddComment>form div input, .formAddComment>form div textarea {
+  flex: 1 1 300px;
+}
+
+.formAddEmployee>form div p, .formAddComment>form div p {
+  color: red;
+  margin: 0;
+}
+
+.employeeInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.employeeInfo__avatar img{
+  width: 100%;
+}
+
+.listOfComments li>p:first-child {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.buttonBackOnMainPage {
+  padding: 20px 0;
+  margin: 0 auto;
 }

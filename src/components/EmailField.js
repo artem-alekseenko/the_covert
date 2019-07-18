@@ -1,29 +1,27 @@
 import React from 'react'
 import { Field } from 'react-final-form'
 
-export default function ({ name, label, required, maxNumberOfCharacters }) {
+export default function ({ name, label, required }) {
 
-    const validateTextField = (value) => {
+    const validateEmailField = (value) => {
         if (required) {
             if (!value) return "Поле обязательно для заполения!"
-        }
-        if (maxNumberOfCharacters) {
-            if (value && value.length > maxNumberOfCharacters) return `Поле не должно содержать больше ${maxNumberOfCharacters} символов`
         }
         return undefined
     }
 
     return (
-        <Field name={name} validate={validateTextField}>
+        <Field name={name} validate={validateEmailField}>
             {({ input, meta }) => (
                 <div>
                     <label>{label}</label>
                     <div>
-                        <textarea {...input} />
+                        <input {...input} type="email" placeholder="example@test.ru" />
                         {meta.error && meta.touched && (<p>{meta.error}</p>)}
                     </div>
                 </div>
             )}
         </Field>
     )
+
 }

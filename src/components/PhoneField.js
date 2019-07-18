@@ -15,8 +15,10 @@ export default function ({ name, label, required }) {
             {({ input, meta }) => (
                 <div>
                     <label>{label}</label>
-                    <input {...input} type="tel"  placeholder="+7 (123)4567890"/>
-                    {meta.error && meta.touched && (<p>{meta.error}</p>)}
+                    <div>
+                        <input {...input} type="tel" placeholder="+7 (123)4567890" />
+                        {meta.error && meta.touched && (<p>{meta.error}</p>)}
+                    </div>
                 </div>
             )}
         </Field>

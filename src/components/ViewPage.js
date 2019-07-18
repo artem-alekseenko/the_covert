@@ -1,21 +1,26 @@
 import React from 'react'
 import CarouselEmployees from './CarouselEmployees';
-import AddEmployee from './AddEmployee';
+import FormAddEmployee from './FormAddEmployee';
 import EmployeeInfo from './EmployeeInfo';
 import ListOfComments from './ListOfComments';
 import FormAddComment from './FormAddComment';
 import ButtonBackOnMainPage from './ButtonBackOnMainPage';
 
-export default function ({ employee, onCreateComment, employeesForCarousel }) {
+export default function ({ employee, onCreateEmployee, onCreateComment, employeesForCarousel }) {
+
+    const onCreateEmployeeForm = (employee) => {
+        onCreateEmployee (employee)
+    }
+
     const onCreateCommentForm = (comment) => {
         comment.id = employee.comments.length > 0 ? +employee.comments[employee.comments.length-1].id +1 : 1;
         onCreateComment(employee, comment)
     }
-
-    return (
+        
+        return (            
         <div className="viewPage">
             <CarouselEmployees employees={employeesForCarousel}/>
-            <AddEmployee />
+            <FormAddEmployee onCreateEmployee={onCreateEmployeeForm}/>
             <EmployeeInfo employee={employee} />
             <ListOfComments comments={employee.comments} />
             <FormAddComment onCreateComment={onCreateCommentForm} />
