@@ -1,5 +1,5 @@
 import React from 'react'
-import ListOfEmployees from './ListOfEmployees';
+import ListOfEmployees from '../ListOfEmployees';
 
 export default function ({ employeesArray }) {
     return (
