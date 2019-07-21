@@ -16,7 +16,7 @@ export default function ({ name, label, required, maxNumberOfCharacters }) {
     return (
         <Field name={name} validate={validateTextField}>
             {({ input, meta }) => (
-                <div>
+                <div className="textAreaField">
                     <label>{label}</label>
                     <div>
                         <textarea {...input} />

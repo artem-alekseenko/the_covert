@@ -1,24 +1,31 @@
 import React from 'react'
 import { Field } from 'react-final-form'
+import PhoneInput from 'react-phone-number-input'
+import { isValidPhoneNumber } from 'react-phone-number-input/max'
 
 export default function ({ name, label, required }) {
 
-    const validateTextField = (value) => {
+    const  validatePhoneField = (value) => {
         if (required) {
-            if (!value) return "Поле обязательно для заполения!"
+            if (!isValidPhoneNumber(value)) return "Введите правильный номер"
         }
         return undefined
     }
 
     return (
-        <Field name={name} validate={validateTextField}>
+        <Field name={name} validate={validatePhoneField} >
             {({ input, meta }) => (
-                <div>
+                <div className="phoneNumber">
                     <label>{label}</label>
-                    <div>
-                        <input {...input} type="tel" placeholder="+7 (123)4567890" />
-                        {meta.error && meta.touched && (<p>{meta.error}</p>)}
-                    </div>
+                    <PhoneInput
+                        {...input}
+                        type={"tel"}
+                        value={"+7"}
+                        onCnange={validatePhoneField}
+                        country={"RU"}
+                        showCountrySelect={false}                        
+                    />                    
+                    {meta.error && meta.touched && (<p>{meta.error}</p>)}
                 </div>
             )}
         </Field>
